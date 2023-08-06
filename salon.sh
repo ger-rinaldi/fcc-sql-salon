@@ -13,7 +13,7 @@ function SHOW_SERVICES(){
 
 function USER_SERVICE_CHOICE() {
   echo "What service would you like to enjoy?"
-  read SERVICE
+  read SERVICE_ID_SELECTED
 }
 
 function IS_VALID_CHOICE(){
@@ -26,8 +26,8 @@ function MAIN_LOOP(){
 
     SHOW_SERVICES
     USER_SERVICE_CHOICE
-    echo "You chose: $SERVICE"
-    IS_VALID_CHOICE $SERVICE
+    echo "You chose: $SERVICE_ID_SELECTED"
+    IS_VALID_CHOICE $SERVICE_ID_SELECTED
 
   done
 }
