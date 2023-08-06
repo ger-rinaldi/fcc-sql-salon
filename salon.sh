@@ -54,6 +54,14 @@ function QUERY_CUSTOMER_NAME(){
 
 }
 
+function INSERT_NEW_CUSTOMER(){
+
+  # Function to insert a new customer to customers table
+
+  NEW_CUSTOMER_RESULT=$($PSQL  "INSERT INTO customers(name, phone) VALUES ('$1', '$2')")
+
+}
+
 function GET_CUSTOMER_INFO(){
 
   # Procedure to request customer or query all custromer personal info requiered
@@ -65,6 +73,7 @@ function GET_CUSTOMER_INFO(){
   if [[ -z $EXISTING_PHONE ]]
   then
     GET_CUSTOMER_NAME
+    INSERT_NEW_CUSTOMER $CUSTOMER_NAME $CUSTOMER_PHONE
   else
     # If the bool variables has value (meaning that user exists)
     # retrieve customers name based in their phone
