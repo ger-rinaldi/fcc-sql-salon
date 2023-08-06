@@ -20,4 +20,14 @@ function IS_VALID_CHOICE(){
   CORRECT_OPTION=$($PSQL "SELECT 1 FROM services WHERE service_id = $1")
 }
 
-SHOW_SERVICES
+function MAIN_LOOP(){
+  while [[ -z "$CORRECT_OPTION" ]]
+  do
+
+    SHOW_SERVICES
+    USER_SERVICE_CHOICE
+    echo "You chose: $SERVICE"
+    IS_VALID_CHOICE $SERVICE
+
+  done
+}
