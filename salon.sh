@@ -46,6 +46,14 @@ function GET_CUSTOMER_NAME(){
 
 }
 
+function QUERY_CUSTOMER_ID() {
+
+  # Query to retrive customers id from database based in their phone
+
+  CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$1'")
+
+}
+
 function QUERY_CUSTOMER_NAME(){
 
   # Query to retrieve CUSTOMER_NAME when CUSTOMER_PHONE exists
@@ -79,6 +87,10 @@ function GET_CUSTOMER_INFO(){
     # retrieve customers name based in their phone
     QUERY_CUSTOMER_NAME $CUSTOMER_PHONE
   fi
+
+  QUERY_CUSTOMER_ID $CUSTOMER_PHONE
+
+}
 }
 
 function MAIN(){
