@@ -39,7 +39,7 @@ function GET_CUSTOMER_PHONE(){
 
 function IS_EXISTING_PHONE(){
 
-  # Query to validate existance of CUSTROMER_PHONE in database
+  # Query to validate existance of CUSTOMER_PHONE in database
 
   EXISTING_PHONE=$($PSQL "SELECT 1 FROM customers WHERE phone = '$1'")
 
@@ -49,7 +49,7 @@ function GET_CUSTOMER_NAME(){
 
   # Procedure to require user input of CUSTOMER_NAME
 
-  echo "You don't seem to be registered, please, input your name:"
+  echo "I don't have a record for that phone number, what's your name?"
   read CUSTOMER_NAME
 
 }
@@ -80,7 +80,7 @@ function INSERT_NEW_CUSTOMER(){
 
 function GET_CUSTOMER_INFO(){
 
-  # Procedure to request customer or query all custromer personal info requiered
+  # Procedure to request customer or query all customer personal info requiered
 
   GET_CUSTOMER_PHONE
   IS_EXISTING_PHONE $CUSTOMER_PHONE
@@ -88,6 +88,7 @@ function GET_CUSTOMER_INFO(){
   # When validation queries fail, they end up as empty strings
   if [[ -z $EXISTING_PHONE ]]
   then
+  echo -e "\n"
     GET_CUSTOMER_NAME
     INSERT_NEW_CUSTOMER $CUSTOMER_NAME $CUSTOMER_PHONE
   else
@@ -104,7 +105,7 @@ function GET_CUSTOM_APPOINTMENT_TIME() {
 
   # Procedure to request user for the appointment time to schedule
 
-  echo "Please, input the time in which you desire the appointment to be:"
+  echo "What time would you like your $SELECTED_SERVICE_NAME, $CUSTOMER_NAME?"
   read SERVICE_TIME
 
 }
@@ -118,19 +119,35 @@ function INSERT_NEW_APPOINTMENT() {
 }
 
 function MAIN(){
+
+  echo -e "\n\n~~~~~ MY SALON ~~~~~"
+
+  echo -e "\nWelcome to My Salon, how can I help you?\n"
+
   while [[ -z "$CORRECT_OPTION" ]]
   do
 
     SHOW_SERVICES
     USER_SERVICE_CHOICE
-    QUERY_SELECTED_SERVICE_NAME $SERVICE_ID_SELECTED
-    echo "You chose: $SELECTED_SERVICE_NAME"
     IS_VALID_CHOICE $SERVICE_ID_SELECTED
+
+    if [[ -z $CORRECT_OPTION ]]
+    then
+      echo -e "\nI could not find that service. What would you like today?"
+    else
+      QUERY_SELECTED_SERVICE_NAME $SERVICE_ID_SELECTED
+      echo "You chose: $SELECTED_SERVICE_NAME"
+    fi
+
   done
 
+  echo -e "\n"
   GET_CUSTOMER_INFO
+  echo -e "\n"
   GET_CUSTOM_APPOINTMENT_TIME
-  INSERT_NEW_APPOINTMENT $SERVICE_TIME $CUSTOMER_ID $SERVICE_ID_SELECTED
+  INSERT_NEW_APPOINTMENT
 
-  echo "I have put you down for a $SELECTED_SERVICE_NAME at $SERVICE_TIME, $CUSTOMER_NAME."
+  echo -e "\nI have put you down for a $SELECTED_SERVICE_NAME at $SERVICE_TIME, $CUSTOMER_NAME.\n"
 }
+
+MAIN
