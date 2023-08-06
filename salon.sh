@@ -45,6 +45,15 @@ function GET_CUSTOMER_NAME(){
   read CUSTOMER_NAME
 
 }
+
+function QUERY_CUSTOMER_NAME(){
+
+  # Query to retrieve CUSTOMER_NAME when CUSTOMER_PHONE exists
+
+  CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$1'")
+
+}
+
 function MAIN_LOOP(){
   while [[ -z "$CORRECT_OPTION" ]]
   do
