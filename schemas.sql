@@ -13,4 +13,4 @@ CREATE TABLE appointments(
   customer_id INT NOT NULL REFERENCES customers(customer_id),
   service_id INT NOT NULL REFERENCES services(service_id));
 
-INSERT INTO services(name) VALUES ('haircut'), ('hairwash'), ('nailclipping');
+INSERT INTO services(name) VALUES ('cut'), ('color'), ('perm'), ('style'), ('trim');
