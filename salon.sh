@@ -99,6 +99,15 @@ function GET_CUSTOMER_INFO(){
   QUERY_CUSTOMER_ID $CUSTOMER_PHONE
 
 }
+
+function GET_CUSTOM_APPOINTMENT_TIME() {
+
+  # Procedure to request user for the appointment time to schedule
+
+  echo "Please, input the time in which you desire the appointment to be:"
+  read SERVICE_TIME
+
+}
 }
 
 function MAIN(){
