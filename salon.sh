@@ -20,6 +20,23 @@ function IS_VALID_CHOICE(){
   CORRECT_OPTION=$($PSQL "SELECT 1 FROM services WHERE service_id = $1")
 }
 
+function GET_CUSTOMER_PHONE(){
+
+  # Procedure to require user input of CUSTOMER_PHONE
+
+  echo "Please input your phone number:"
+  read CUSTOMER_PHONE
+
+}
+
+function GET_CUSTOMER_NAME(){
+
+  # Procedure to require user input of CUSTOMER_NAME
+
+  echo "You don't seem to be registered, please, input your name:"
+  read CUSTOMER_NAME
+
+}
 function MAIN_LOOP(){
   while [[ -z "$CORRECT_OPTION" ]]
   do
