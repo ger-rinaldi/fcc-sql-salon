@@ -11,4 +11,13 @@ function SHOW_SERVICES(){
   done
 }
 
+function USER_SERVICE_CHOICE() {
+  echo "What service would you like to enjoy?"
+  read SERVICE
+}
+
+function IS_VALID_CHOICE(){
+  CORRECT_OPTION=$($PSQL "SELECT 1 FROM services WHERE service_id = $1")
+}
+
 SHOW_SERVICES
