@@ -108,6 +108,13 @@ function GET_CUSTOM_APPOINTMENT_TIME() {
   read SERVICE_TIME
 
 }
+
+function INSERT_NEW_APPOINTMENT() {
+
+  # Function to insert new appointment into the db
+
+  NEW_APPOINTMENT_RESULT=$($PSQL "INSERT INTO appointments(time, customer_id, service_id) VALUES ('$1', $2, $3)")
+
 }
 
 function MAIN(){
