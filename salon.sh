@@ -54,6 +54,24 @@ function QUERY_CUSTOMER_NAME(){
 
 }
 
+function GET_CUSTOMER_INFO(){
+
+  # Procedure to request customer or query all custromer personal info requiered
+
+  GET_CUSTOMER_PHONE
+  IS_EXISTING_PHONE $CUSTOMER_PHONE
+
+  # When validation queries fail, they end up as empty strings
+  if [[ -z $EXISTING_PHONE ]]
+  then
+    GET_CUSTOMER_NAME
+  else
+    # If the bool variables has value (meaning that user exists)
+    # retrieve customers name based in their phone
+    QUERY_CUSTOMER_NAME $CUSTOMER_PHONE
+  fi
+}
+
 function MAIN_LOOP(){
   while [[ -z "$CORRECT_OPTION" ]]
   do
