@@ -11,6 +11,14 @@ function SHOW_SERVICES(){
   done
 }
 
+function QUERY_SELECTED_SERVICE_NAME() {
+
+  # Function to query customers selected service name
+
+  SELECTED_SERVICE_NAME=$($PSQL "SELECT name FROM services WHERE service_id = $1")
+
+}
+
 function USER_SERVICE_CHOICE() {
   echo "What service would you like to enjoy?"
   read SERVICE_ID_SELECTED
