@@ -1,0 +1,33 @@
+@startuml salon
+
+hide empty methods
+
+entity example {
+  * primary_key
+  - foreing_key
+  any_column
+}
+
+entity customers {
+  *customer_id
+  name
+  phone
+}
+
+entity appointments {
+  *appointment_id
+  - customer_id
+  - service_id
+  time
+}
+
+entity services {
+  *service_id
+  name
+}
+
+example -[hidden]r- customers
+customers ||--o{ appointments
+appointments }o-l-|| services
+
+@enduml
