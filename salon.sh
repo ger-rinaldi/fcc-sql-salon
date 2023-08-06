@@ -20,7 +20,7 @@ function QUERY_SELECTED_SERVICE_NAME() {
 }
 
 function USER_SERVICE_CHOICE() {
-  echo "What service would you like to enjoy?"
+
   read SERVICE_ID_SELECTED
 }
 
@@ -88,7 +88,7 @@ function GET_CUSTOMER_INFO(){
   # When validation queries fail, they end up as empty strings
   if [[ -z $EXISTING_PHONE ]]
   then
-  echo -e "\n"
+    echo ""
     GET_CUSTOMER_NAME
     INSERT_NEW_CUSTOMER $CUSTOMER_NAME $CUSTOMER_PHONE
   else
@@ -141,9 +141,9 @@ function MAIN(){
 
   done
 
-  echo -e "\n"
+  echo ""
   GET_CUSTOMER_INFO
-  echo -e "\n"
+  echo ""
   GET_CUSTOM_APPOINTMENT_TIME
   INSERT_NEW_APPOINTMENT
 
