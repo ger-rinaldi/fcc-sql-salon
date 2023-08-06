@@ -29,6 +29,14 @@ function GET_CUSTOMER_PHONE(){
 
 }
 
+function IS_EXISTING_PHONE(){
+
+  # Query to validate existance of CUSTROMER_PHONE in database
+
+  EXISTING_PHONE=$($PSQL "SELECT 1 FROM customers WHERE phone = '$1'")
+
+}
+
 function GET_CUSTOMER_NAME(){
 
   # Procedure to require user input of CUSTOMER_NAME
