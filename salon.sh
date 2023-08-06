@@ -72,7 +72,7 @@ function GET_CUSTOMER_INFO(){
   fi
 }
 
-function MAIN_LOOP(){
+function MAIN(){
   while [[ -z "$CORRECT_OPTION" ]]
   do
 
@@ -80,6 +80,7 @@ function MAIN_LOOP(){
     USER_SERVICE_CHOICE
     echo "You chose: $SERVICE_ID_SELECTED"
     IS_VALID_CHOICE $SERVICE_ID_SELECTED
-
   done
+
+  GET_CUSTOMER_INFO
 }
